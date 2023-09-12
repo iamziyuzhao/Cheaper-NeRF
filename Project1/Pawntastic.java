@@ -7,12 +7,13 @@ public class Pawntastic {
         int length = 0;
         //chessPiece
         String[] chessPiece = {"O", "X"};
-        //
+        //usercolor
+        char userColor = ' ';
 
         //--Ask game size from user
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Welcome to Pawntasitic");
+        System.out.println("Welcome to Pawntasitic(by Ziyu Zhao and Tan Zhen)");
         System.out.print("Which size you prefer?\n"
             + "1. 4*4\n"
             + "2. 5*5\n"
@@ -28,16 +29,31 @@ public class Pawntastic {
             length = 8;
         }
 
-//        //--Ask which method from user
-//        System.out.println("Which method you prefer?\n"
-//            + "1. MINIMAX\n"
-//            + "2. H-MINIMAX with α/β");
-//        //todo: check the input from user
-//        Integer realMethod = Integer.parseInt(sc.nextLine());
-//        System.out.println(realMethod);
+        //--Ask which method from user
+        System.out.println("Which method you prefer?\n"
+            + "1.randomly\n"
+            + "2. MINIMAX\n"
+            + "3. H-MINIMAX with α/β");
+        //todo: check the input from user
+        Integer realMethod = Integer.parseInt(sc.nextLine());
 
-        InitGame game = new InitGame(length);
+        //--Ask which color from user
+        //todo: check the input
+
+        System.out.println("which color you want to play(white for w or black for b):(white go first)");
+        String color = sc.nextLine();
+        if (color == "w"){
+           userColor = '\u265F';
+        }else{
+           userColor = '\u2659';
+        }
+        System.out.println(userColor);
+
+
+        InitGame game = new InitGame(length,userColor);
         game.gameBoard();
+        game.play_game();
+        System.out.println(userColor);
 
 
 
