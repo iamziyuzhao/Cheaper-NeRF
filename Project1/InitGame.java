@@ -107,7 +107,7 @@ public class InitGame {
             while (true){
                 //white turn
                 if (user_color == '\u2659'){
-                    ArrayList<Point> moveAble = moveable_list(cordnt,user_color);
+//                    ArrayList<Point> moveAble = moveable_list(cordnt,user_color);
                     //todo: check the moveAble list and resultr
 
                     //Notice the user the color
@@ -119,7 +119,7 @@ public class InitGame {
                     }
 
                     //Measure the Elapsed time
-                    System.out.println("your move: ");
+                    System.out.println("your move:(please form your input as: a4, b3, d5, etc.)");
                     long startTime = System.currentTimeMillis();
                     String move = sc.next();
                     long endTime = System.currentTimeMillis();
@@ -132,8 +132,10 @@ public class InitGame {
                     char[] movement = move.toCharArray();
                     int column = (int)(movement[0])-97;
                     int row = (int)(movement[1])-49;
-                    Point point = new Point(row,column);
-                    cordnt = actualMove(cordnt,point,user_color);
+//                    Point point = new Point(row,column);
+                    //check the movement are legal
+
+                    cordnt[row][column] = '\u2659';
 
 
                     //todo check badmovement and vali
