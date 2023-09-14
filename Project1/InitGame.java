@@ -1,3 +1,4 @@
+import java.awt.desktop.SystemEventListener;
 import java.util.*;
 
 public class InitGame {
@@ -64,22 +65,76 @@ public class InitGame {
                 cordnt[6][0]=cordnt[6][1]=cordnt[6][2]=cordnt[6][3]=cordnt[6][4]=cordnt[6][5]=cordnt[6][6]=cordnt[6][7]='\u2659';
             }
         }
-        public boolean checkVali(char[][] cordnt,Point point,char color){
-            return true;
-        }
 
-        public ArrayList<Point> moveable_list(char[][] cordnt, char color){
-            ArrayList<Point> move_list = new ArrayList<Point>();
-            for (int i = 0; i < this.length; i++) {
-                for (int j = 0; j < this.length; j++) {
-                    Point point = new Point(i, j);
-                    if (checkVali(cordnt, point, color))
-                        move_list.add(point);
+        //This function is for white
+        public boolean checkVali(char[][] cordnt,Point r_point, Point t_point,char color){
+            //Select pawn
+            int r_row = r_point.getRow();
+            int r_column = r_point.getColumn();
+            //To where
+            int t_row = t_point.getRow();
+            int t_column = t_point.getColumn();
+
+            //check the pawn is correct color or not
+            if (cordnt[r_row][r_column] == color){
+                int differRow = t_row - r_row;
+                int differColumn = t_column - r_column;
+                //check if its legal move(do not care the specific move)
+                if(r_column==0){
+                    //the left most legal move
+
+                }
+                else if(r_column==length){
+                    //the right most legal move
+
+                }
+                else{
+                    //the normal legal move
+                    //&& is logic and. || is logic or
+                    if((differRow==-1&&differColumn==-1)||
+                        (differRow==-1&&differColumn==0)||
+                        (differRow==-2&&differColumn==0)||
+                        (differRow==-1&&differColumn==1)
+                    )
+                    {   //go diagonal one step,and check the diagonal black pawn
+                        if(((differRow==-1&&differColumn==-1)||(differRow==-1&&differColumn==1))&&(cordnt[t_row][t_column]=='\u265F')){
+                            return true;
+                        }
+                        //go straight one step,and check the front is empty
+                        else if((differRow==-1&&differColumn==0)&&(cordnt[t_row][t_column]=='\0')){
+                            return true;
+                        }
+                        //go straight two step, and check the front is empty and if it is first move
+                        else if((differRow==-2&&differColumn==0)&&
+                                (cordnt[t_row-1][t_column]=='\0')&&
+                                (cordnt[t_row][t_column]=='\0')&&
+                                (r_row == length-2)){
+                            return true;
+                        }
+                        //else return false
+                        else
+                            return false;
+                    }
+                    else{
+                        return false;
+                    }
                 }
             }
-            return move_list;
-
+            return false;
         }
+
+//        public ArrayList<Point> moveable_list(char[][] cordnt, char color){
+//            ArrayList<Point> move_list = new ArrayList<Point>();
+//            for (int i = 0; i < this.length; i++) {
+//                for (int j = 0; j < this.length; j++) {
+//                    Point point = new Point(i, j);
+//                    if (checkVali(cordnt, point, color))
+//                        move_list.add(point);
+//                }
+//            }
+//            return move_list;
+
+//        }
         public char[][] actualMove(char[][] cordnt, Point point, char user_color){
             int column = point.getColumn();
             int row = point.getRow();
@@ -119,27 +174,45 @@ public class InitGame {
                     }
 
                     //Measure the Elapsed time
-                    System.out.println("your move:(please form your input as: a4, b3, d5, etc.)");
-                    long startTime = System.currentTimeMillis();
+                    System.out.print("your move: (if you want to move from b4 to b3(remember start point always in first), typing:b4b3)\n" + "(? for help)\n");
+//                    long startTime = System.currentTimeMillis();
                     String move = sc.next();
-                    long endTime = System.currentTimeMillis();
-                    long elapsedTime = endTime - startTime;
-                    System.out.println("Elapsed time: " + elapsedTime+"Millisecond");
+                    System.out.println(move);
+                    if(move.equals("?")){
+                        System.out.println(
+                                "There is 2 condition for the legal movement: \n"+
+                                "1. only go forward,which means can't downward\n" +
+                                "2. go diagonally only if there is a opponent pawn\n"
+                        );
+                    }else{
+//                    long endTime = System.currentTimeMillis();
+//                    long elapsedTime = endTime - startTime;
+//                    System.out.println("Elapsed time: " + elapsedTime+"Millisecond");
 
-                    //todo: User Ask for help
+                        //Initial the movement
 
-                    //Initial the movement
-                    char[] movement = move.toCharArray();
-                    int column = (int)(movement[0])-97;
-                    int row = (int)(movement[1])-49;
-//                    Point point = new Point(row,column);
-                    //check the movement are legal
+                        char[] movement = move.toCharArray();
+                        int r_column = (int) (movement[0]) - 97;
+                        int r_row = (int) (movement[1]) - 49;
+                        int column = (int) (movement[2]) - 97;
+                        int row = (int) (movement[3]) - 49;
+                        Point r_point = new Point(r_row,r_column);
+                        Point t_point = new Point(row,column);
+                        //check the movement are legal
 
-                    cordnt[row][column] = '\u2659';
+
+                        //NOTICE: row and column revers in 2-d array(cordnt)
+                        if (checkVali(cordnt,r_point,t_point,user_color)) {
+                            cordnt[r_row][r_column] = ' ';
+                            cordnt[row][column] = '\u2659';
+                        }else{
+                            System.out.println("you do the wrong way!");
+                        }
 
 
-                    //todo check badmovement and vali
-                    gameBoard();
+                        //todo check badmovement and vali
+                        gameBoard();
+                    }
 
 
 
