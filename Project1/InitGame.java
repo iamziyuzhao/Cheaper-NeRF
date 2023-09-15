@@ -135,6 +135,8 @@ public class InitGame {
 //            return move_list;
 
 //        }
+
+    //the actual move may dont need it
         public char[][] actualMove(char[][] cordnt, Point point, char user_color){
             int column = point.getColumn();
             int row = point.getRow();
