@@ -80,16 +80,64 @@ public class InitGame {
                 int differRow = t_row - r_row;
                 int differColumn = t_column - r_column;
                 //check if its legal move(do not care the specific move)
+
+                //the left most legal move
                 if(r_column==0){
-                    //the left most legal move
-
+                    if((differRow==-1&&differColumn==0)|| (differRow==-2&&differColumn==0)|| (differRow==-1&&differColumn==1))
+                    {
+                        //go diagonal one step and check the right diagonal black pawn
+                        if(((differRow==-1&&differColumn==1))&&(cordnt[t_row][t_column]=='\u265F')){
+                            return true;
+                        }
+                        //go straight one step,and check the front is empty
+                        else if((differRow==-1&&differColumn==0)&&(cordnt[t_row][t_column]=='\0')){
+                            return true;
+                        }
+                        //go straight two step, and check the front is empty and if it is first move
+                        else if((differRow==-2&&differColumn==0)&&
+                                (cordnt[t_row-1][t_column]=='\0')&&
+                                (cordnt[t_row][t_column]=='\0')&&
+                                (r_row == length-2)){
+                            return true;
+                        }
+                        //else return false
+                        else
+                            return false;
+                    }
+                    else {
+                        return false;
+                    }
                 }
+
+                //the right most legal move
                 else if(r_column==length){
-                    //the right most legal move
+                    if((differRow==-1&&differColumn==-1)|| (differRow==-1&&differColumn==0)|| (differRow==-2&&differColumn==0))
+                    {
+                        //go diagonal one step,and check the left diagonal black pawn
+                        if((differRow==-1&&differColumn==-1)&&(cordnt[t_row][t_column]=='\u265F')){
+                            return true;
+                        }
+                        //go straight one step,and check the front is empty
+                        else if((differRow==-1&&differColumn==0)&&(cordnt[t_row][t_column]=='\0')){
+                            return true;
+                        }
+                        //go straight two step, and check the front is empty and if it is first move
+                        else if((differRow==-2&&differColumn==0)&&
+                                (cordnt[t_row-1][t_column]=='\0')&&
+                                (cordnt[t_row][t_column]=='\0')&&
+                                (r_row == length-2)){
+                            return true;
+                        }
+                        //else return false
+                        else
+                            return false;
 
+                    }
+                    else return false;
                 }
+
+                //the normal legal move
                 else{
-                    //the normal legal move
                     //&& is logic and. || is logic or
                     if((differRow==-1&&differColumn==-1)||
                         (differRow==-1&&differColumn==0)||
@@ -115,26 +163,11 @@ public class InitGame {
                         else
                             return false;
                     }
-                    else{
-                        return false;
-                    }
+                    else return false;
                 }
             }
             return false;
         }
-
-//        public ArrayList<Point> moveable_list(char[][] cordnt, char color){
-//            ArrayList<Point> move_list = new ArrayList<Point>();
-//            for (int i = 0; i < this.length; i++) {
-//                for (int j = 0; j < this.length; j++) {
-//                    Point point = new Point(i, j);
-//                    if (checkVali(cordnt, point, color))
-//                        move_list.add(point);
-//                }
-//            }
-//            return move_list;
-
-//        }
 
     //the actual move may dont need it
         public char[][] actualMove(char[][] cordnt, Point point, char user_color){
