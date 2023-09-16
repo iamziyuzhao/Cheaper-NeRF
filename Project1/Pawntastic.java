@@ -42,10 +42,10 @@ public class Pawntastic {
 
         System.out.println("which color you want to play(white for w or black for b):(white go first)");
         String color = sc.nextLine();
-        if (color == "w"){
-           userColor = '\u265F';
-        }else{
+        if (color.equals("w")){
            userColor = '\u2659';
+        }else{
+           userColor = '\u265F';
         }
         System.out.println(userColor);
 

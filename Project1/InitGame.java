@@ -75,117 +75,188 @@ public class InitGame {
             int t_row = t_point.getRow();
             int t_column = t_point.getColumn();
 
-            //check the pawn is correct color or not
-            if (cordnt[r_row][r_column] == color){
-                int differRow = t_row - r_row;
-                int differColumn = t_column - r_column;
-                //check if its legal move(do not care the specific move)
 
-                //the left most legal move
-                if(r_column==0){
-                    if((differRow==-1&&differColumn==0)|| (differRow==-2&&differColumn==0)|| (differRow==-1&&differColumn==1))
-                    {
-                        //go diagonal one step and check the right diagonal black pawn
-                        if(((differRow==-1&&differColumn==1))&&(cordnt[t_row][t_column]=='\u265F')){
-                            return true;
-                        }
-                        //go straight one step,and check the front is empty
-                        else if((differRow==-1&&differColumn==0)&&(cordnt[t_row][t_column]=='\0')){
-                            return true;
-                        }
-                        //go straight two step, and check the front is empty and if it is first move
-                        else if((differRow==-2&&differColumn==0)&&
-                                (cordnt[t_row-1][t_column]=='\0')&&
-                                (cordnt[t_row][t_column]=='\0')&&
-                                (r_row == length-2)){
-                            return true;
-                        }
-                        //else return false
-                        else
+            //the white one
+            if(color == '\u2659') {
+                //check the color if its right color
+                if (cordnt[r_row][r_column] == color) {
+                    int differRow = t_row - r_row;
+                    int differColumn = t_column - r_column;
+                    //check if its legal move(do not care the specific move)
+
+                    //the left most legal move
+                    if (r_column == 0) {
+                        if ((differRow == -1 && differColumn == 0) || (differRow == -2 && differColumn == 0) || (differRow == -1 && differColumn == 1)) {
+                            //go diagonal one step and check the right diagonal black pawn
+                            if (((differRow == -1 && differColumn == 1)) && (cordnt[t_row][t_column] == '\u265F')) {
+                                return true;
+                            }
+                            //go straight one step,and check the front is empty
+                            else if ((differRow == -1 && differColumn == 0) && (cordnt[t_row][t_column] == '\0')) {
+                                return true;
+                            }
+                            //go straight two step, and check the front is empty and if it is first move
+                            else if ((differRow == -2 && differColumn == 0) &&
+                                    (cordnt[t_row + 1][t_column] == '\0') &&
+                                    (cordnt[t_row][t_column] == '\0') &&
+                                    (r_row == length - 2)) {
+                                return true;
+                            }
+                            //else return false
+                            else
+                                return false;
+                        } else {
                             return false;
+                        }
                     }
+
+                    //the right most legal move
+                    else if (r_column == length) {
+                        if ((differRow == -1 && differColumn == -1) || (differRow == -1 && differColumn == 0) || (differRow == -2 && differColumn == 0)) {
+                            //go diagonal one step,and check the left diagonal black pawn
+                            if ((differRow == -1 && differColumn == -1) && (cordnt[t_row][t_column] == '\u265F')) {
+                                return true;
+                            }
+                            //go straight one step,and check the front is empty
+                            else if ((differRow == -1 && differColumn == 0) && (cordnt[t_row][t_column] == '\0')) {
+                                return true;
+                            }
+                            //go straight two step, and check the front is empty and if it is first move
+                            else if ((differRow == -2 && differColumn == 0) &&
+                                    (cordnt[t_row + 1][t_column] == '\0') &&
+                                    (cordnt[t_row][t_column] == '\0') &&
+                                    (r_row == length - 2)) {
+                                return true;
+                            }
+                            //else return false
+                            else
+                                return false;
+
+                        } else return false;
+                    }
+
+                    //the normal legal move
                     else {
-                        return false;
+                        //&& is logic and. || is logic or
+                        if ((differRow == -1 && differColumn == -1) ||
+                                (differRow == -1 && differColumn == 0) ||
+                                (differRow == -2 && differColumn == 0) ||
+                                (differRow == -1 && differColumn == 1)
+                        ) {   //go diagonal one step,and check the diagonal black pawn
+                            if (((differRow == -1 && differColumn == -1) || (differRow == -1 && differColumn == 1)) && (cordnt[t_row][t_column] == '\u265F')) {
+                                return true;
+                            }
+                            //go straight one step,and check the front is empty
+                            else if ((differRow == -1 && differColumn == 0) && (cordnt[t_row][t_column] == '\0')) {
+                                return true;
+                            }
+                            //go straight two step, and check the front is empty and if it is first move
+                            else if ((differRow == -2 && differColumn == 0) &&
+                                    (cordnt[t_row + 1][t_column] == '\0') &&
+                                    (cordnt[t_row][t_column] == '\0') &&
+                                    (r_row == length - 2)) {
+                                return true;
+                            }
+                            //else return false
+                            else
+                                return false;
+                        } else return false;
                     }
-                }
-
-                //the right most legal move
-                else if(r_column==length){
-                    if((differRow==-1&&differColumn==-1)|| (differRow==-1&&differColumn==0)|| (differRow==-2&&differColumn==0))
-                    {
-                        //go diagonal one step,and check the left diagonal black pawn
-                        if((differRow==-1&&differColumn==-1)&&(cordnt[t_row][t_column]=='\u265F')){
-                            return true;
-                        }
-                        //go straight one step,and check the front is empty
-                        else if((differRow==-1&&differColumn==0)&&(cordnt[t_row][t_column]=='\0')){
-                            return true;
-                        }
-                        //go straight two step, and check the front is empty and if it is first move
-                        else if((differRow==-2&&differColumn==0)&&
-                                (cordnt[t_row-1][t_column]=='\0')&&
-                                (cordnt[t_row][t_column]=='\0')&&
-                                (r_row == length-2)){
-                            return true;
-                        }
-                        //else return false
-                        else
-                            return false;
-
-                    }
-                    else return false;
-                }
-
-                //the normal legal move
-                else{
-                    //&& is logic and. || is logic or
-                    if((differRow==-1&&differColumn==-1)||
-                        (differRow==-1&&differColumn==0)||
-                        (differRow==-2&&differColumn==0)||
-                        (differRow==-1&&differColumn==1)
-                    )
-                    {   //go diagonal one step,and check the diagonal black pawn
-                        if(((differRow==-1&&differColumn==-1)||(differRow==-1&&differColumn==1))&&(cordnt[t_row][t_column]=='\u265F')){
-                            return true;
-                        }
-                        //go straight one step,and check the front is empty
-                        else if((differRow==-1&&differColumn==0)&&(cordnt[t_row][t_column]=='\0')){
-                            return true;
-                        }
-                        //go straight two step, and check the front is empty and if it is first move
-                        else if((differRow==-2&&differColumn==0)&&
-                                (cordnt[t_row-1][t_column]=='\0')&&
-                                (cordnt[t_row][t_column]=='\0')&&
-                                (r_row == length-2)){
-                            return true;
-                        }
-                        //else return false
-                        else
-                            return false;
-                    }
-                    else return false;
                 }
             }
+
+            //the black one
+            else if (color == '\u265F') {
+                //check the color if its right color
+                if(cordnt[r_row][r_column] == color){
+                    int differRow = t_row - r_row;
+                    int differColumn = t_column - r_column;
+                    //check if its legal move(do not care the specific move)
+
+                    //the left most legal move
+                    if (r_column == 0) {
+                        if ((differRow == 1 && differColumn == 0) || (differRow == 2 && differColumn == 0) || (differRow == 1 && differColumn == 1)) {
+                            //go diagonal one step and check the right diagonal white pawn
+                            if (((differRow == 1 && differColumn == 1)) && (cordnt[t_row][t_column] == '\u2659')) {
+                                return true;
+                            }
+                            //go straight one step,and check the front is empty
+                            else if ((differRow == 1 && differColumn == 0) && (cordnt[t_row][t_column] == '\0')) {
+                                return true;
+                            }
+                            //go straight two step, and check the front is empty and if it is first move
+                            else if ((differRow == 2 && differColumn == 0) &&
+                                    (cordnt[t_row - 1][t_column] == '\0') &&
+                                    (cordnt[t_row][t_column] == '\0') &&
+                                    (r_row == 1)) {
+                                return true;
+                            }
+                            //else return false
+                            else
+                                return false;
+                        } else return false;
+
+                    }
+
+                    //the right most legal move
+                    else if (r_column == length) {
+                        if ((differRow == 1 && differColumn == -1) || (differRow == 1 && differColumn == 0) || (differRow == 2 && differColumn == 0)) {
+                            //go diagonal one step,and check the left diagonal white pawn
+                            if ((differRow == 1 && differColumn == -1) && (cordnt[t_row][t_column] == '\u2659')) {
+                                return true;
+                            }
+                            //go straight one step,and check the front is empty
+                            else if ((differRow == 1 && differColumn == 0) && (cordnt[t_row][t_column] == '\0')) {
+                                return true;
+                            }
+                            //go straight two step, and check the front is empty and if it is first move
+                            else if ((differRow == 2 && differColumn == 0) &&
+                                    (cordnt[t_row - 1][t_column] == '\0') &&
+                                    (cordnt[t_row][t_column] == '\0') &&
+                                    (r_row == 1)) {
+                                return true;
+                            }
+                            //else return false
+                            else
+                                return false;
+                        } else return false;
+                    }
+
+                    //the normal legal move
+                    else {
+                        //&& is logic and. || is logic or
+                        if ((differRow == 1 && differColumn == -1) ||
+                                (differRow == 1 && differColumn == 0) ||
+                                (differRow == 2 && differColumn == 0) ||
+                                (differRow == 1 && differColumn == 1)
+                        ) {   //go diagonal one step,and check the diagonal white pawn
+                            if (((differRow == 1 && differColumn == -1) || (differRow == 1 && differColumn == 1)) && (cordnt[t_row][t_column] == '\u2659')) {
+                                return true;
+                            }
+                            //go straight one step,and check the front is empty
+                            else if ((differRow == 1 && differColumn == 0) && (cordnt[t_row][t_column] == '\0')) {
+                                return true;
+                            }
+                            //go straight two step, and check the front is empty and if it is first move
+                            else if ((differRow == 2 && differColumn == 0) &&
+                                    (cordnt[t_row - 1][t_column] == '\0') &&
+                                    (cordnt[t_row][t_column] == '\0') &&
+                                    (r_row == 1)) {
+                                return true;
+                            }
+                            //else return false
+                            else
+                                return false;
+                        } else return false;
+                    }
+
+                }
+
+
+            }
+
+
             return false;
-        }
-
-    //the actual move may dont need it
-        public char[][] actualMove(char[][] cordnt, Point point, char user_color){
-            int column = point.getColumn();
-            int row = point.getRow();
-            char turnedColor = ' ';
-            //Assign color
-            cordnt[row][column] = user_color;
-            //turn to opposite color
-            if(user_color == '\u265F'){
-                turnedColor = '\u2659';
-            }else{
-                turnedColor = '\u265F';
-            }
-
-
-
-            return null;
         }
 
 
@@ -197,16 +268,8 @@ public class InitGame {
             while (true){
                 //white turn
                 if (user_color == '\u2659'){
-//                    ArrayList<Point> moveAble = moveable_list(cordnt,user_color);
-                    //todo: check the moveAble list and resultr
-
-                    //Notice the user the color
-                    System.out.println(' ');
-                    if (user_color == '\u2659') {
-                        System.out.println("Next to play:  WHITE/\u2659");
-                    }else{
-                        System.out.println("Next to play:  Black/\u265F");
-                    }
+                    System.out.println("");
+                    System.out.println("Next to play:  WHITE/\u2659");
 
                     //Measure the Elapsed time
                     System.out.print("your move: (if you want to move from b4 to b3(remember start point always in first), typing:b4b3)\n" + "(? for help)\n");
@@ -220,12 +283,7 @@ public class InitGame {
                                 "2. go diagonally only if there is a opponent pawn\n"
                         );
                     }else{
-//                    long endTime = System.currentTimeMillis();
-//                    long elapsedTime = endTime - startTime;
-//                    System.out.println("Elapsed time: " + elapsedTime+"Millisecond");
-
                         //Initial the movement
-
                         char[] movement = move.toCharArray();
                         int r_column = (int) (movement[0]) - 97;
                         int r_row = (int) (movement[1]) - 49;
@@ -233,29 +291,61 @@ public class InitGame {
                         int row = (int) (movement[3]) - 49;
                         Point r_point = new Point(r_row,r_column);
                         Point t_point = new Point(row,column);
+
                         //check the movement are legal
-
-
                         //NOTICE: row and column revers in 2-d array(cordnt)
                         if (checkVali(cordnt,r_point,t_point,user_color)) {
                             cordnt[r_row][r_column] = ' ';
                             cordnt[row][column] = '\u2659';
+                            user_color = '\u265F';
+                            gameBoard();
+                        }else{
+                            System.out.println("you do the wrong way!");
+                        }
+                    }
+                }
+
+                //black turn
+                else if (user_color == '\u265F'){
+                    System.out.println("");
+                    System.out.println("Next to play:  BLACK/\u265F");
+
+                    //Measure the Elapsed time
+                    System.out.print("your move: (if you want to move from b4 to b3(remember start point always in first), typing:b4b3)\n" + "(? for help)\n");
+//                    long startTime = System.currentTimeMillis();
+                    String move = sc.next();
+                    System.out.println(move);
+                    if(move.equals("?")){
+                        System.out.println(
+                                "There is 2 condition for the legal movement: \n"+
+                                        "1. only go forward,which means can't downward\n" +
+                                        "2. go diagonally only if there is a opponent pawn\n"
+                        );
+                    }else{
+                        //Initial the movement
+                        char[] movement = move.toCharArray();
+                        int r_column = (int) (movement[0]) - 97;
+                        int r_row = (int) (movement[1]) - 49;
+                        int column = (int) (movement[2]) - 97;
+                        int row = (int) (movement[3]) - 49;
+                        Point r_point = new Point(r_row,r_column);
+                        Point t_point = new Point(row,column);
+
+                        //check the movement are legal
+                        //NOTICE: row and column revers in 2-d array(cordnt)
+                        if (checkVali(cordnt,r_point,t_point,user_color)) {
+                            cordnt[r_row][r_column] = ' ';
+                            cordnt[row][column] = '\u265F';
+                            user_color = '\u2659';
+                            gameBoard();
                         }else{
                             System.out.println("you do the wrong way!");
                         }
 
-
-                        //todo check badmovement and vali
-                        gameBoard();
                     }
-
-
-
-
-
-
-
                 }
+
+
             }
 
 
