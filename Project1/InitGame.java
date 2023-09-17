@@ -35,7 +35,8 @@ public class InitGame {
              for(int j = 0; j < this.length; j++){
                  if(cordnt[i][j]!='\0'){
                      System.out.print(cordnt[i][j] + "|");
-                 }else{
+                 } else{
+                     cordnt[i][j]=' ';
                      System.out.print(" |");
                  }
              }
@@ -92,13 +93,13 @@ public class InitGame {
                                 return true;
                             }
                             //go straight one step,and check the front is empty
-                            else if ((differRow == -1 && differColumn == 0) && (cordnt[t_row][t_column] == '\0')) {
+                            else if ((differRow == -1 && differColumn == 0) && (cordnt[t_row][t_column] == ' ')) {
                                 return true;
                             }
                             //go straight two step, and check the front is empty and if it is first move
                             else if ((differRow == -2 && differColumn == 0) &&
-                                    (cordnt[t_row + 1][t_column] == '\0') &&
-                                    (cordnt[t_row][t_column] == '\0') &&
+                                    (cordnt[t_row + 1][t_column] == ' ') &&
+                                    (cordnt[t_row][t_column] == ' ') &&
                                     (r_row == length - 2)) {
                                 return true;
                             }
@@ -118,13 +119,13 @@ public class InitGame {
                                 return true;
                             }
                             //go straight one step,and check the front is empty
-                            else if ((differRow == -1 && differColumn == 0) && (cordnt[t_row][t_column] == '\0')) {
+                            else if ((differRow == -1 && differColumn == 0) && (cordnt[t_row][t_column] == ' ')) {
                                 return true;
                             }
                             //go straight two step, and check the front is empty and if it is first move
                             else if ((differRow == -2 && differColumn == 0) &&
-                                    (cordnt[t_row + 1][t_column] == '\0') &&
-                                    (cordnt[t_row][t_column] == '\0') &&
+                                    (cordnt[t_row + 1][t_column] == ' ') &&
+                                    (cordnt[t_row][t_column] == ' ') &&
                                     (r_row == length - 2)) {
                                 return true;
                             }
@@ -147,13 +148,13 @@ public class InitGame {
                                 return true;
                             }
                             //go straight one step,and check the front is empty
-                            else if ((differRow == -1 && differColumn == 0) && (cordnt[t_row][t_column] == '\0')) {
+                            else if ((differRow == -1 && differColumn == 0) && (cordnt[t_row][t_column] == ' ')) {
                                 return true;
                             }
                             //go straight two step, and check the front is empty and if it is first move
                             else if ((differRow == -2 && differColumn == 0) &&
-                                    (cordnt[t_row + 1][t_column] == '\0') &&
-                                    (cordnt[t_row][t_column] == '\0') &&
+                                    (cordnt[t_row + 1][t_column] == ' ') &&
+                                    (cordnt[t_row][t_column] == ' ') &&
                                     (r_row == length - 2)) {
                                 return true;
                             }
@@ -181,13 +182,13 @@ public class InitGame {
                                 return true;
                             }
                             //go straight one step,and check the front is empty
-                            else if ((differRow == 1 && differColumn == 0) && (cordnt[t_row][t_column] == '\0')) {
+                            else if ((differRow == 1 && differColumn == 0) && (cordnt[t_row][t_column] == ' ')) {
                                 return true;
                             }
                             //go straight two step, and check the front is empty and if it is first move
                             else if ((differRow == 2 && differColumn == 0) &&
-                                    (cordnt[t_row - 1][t_column] == '\0') &&
-                                    (cordnt[t_row][t_column] == '\0') &&
+                                    (cordnt[t_row - 1][t_column] == ' ') &&
+                                    (cordnt[t_row][t_column] == ' ') &&
                                     (r_row == 1)) {
                                 return true;
                             }
@@ -206,13 +207,13 @@ public class InitGame {
                                 return true;
                             }
                             //go straight one step,and check the front is empty
-                            else if ((differRow == 1 && differColumn == 0) && (cordnt[t_row][t_column] == '\0')) {
+                            else if ((differRow == 1 && differColumn == 0) && (cordnt[t_row][t_column] == ' ')) {
                                 return true;
                             }
                             //go straight two step, and check the front is empty and if it is first move
                             else if ((differRow == 2 && differColumn == 0) &&
-                                    (cordnt[t_row - 1][t_column] == '\0') &&
-                                    (cordnt[t_row][t_column] == '\0') &&
+                                    (cordnt[t_row - 1][t_column] == ' ') &&
+                                    (cordnt[t_row][t_column] == ' ') &&
                                     (r_row == 1)) {
                                 return true;
                             }
@@ -234,13 +235,13 @@ public class InitGame {
                                 return true;
                             }
                             //go straight one step,and check the front is empty
-                            else if ((differRow == 1 && differColumn == 0) && (cordnt[t_row][t_column] == '\0')) {
+                            else if ((differRow == 1 && differColumn == 0) && (cordnt[t_row][t_column] == ' ')) {
                                 return true;
                             }
                             //go straight two step, and check the front is empty and if it is first move
                             else if ((differRow == 2 && differColumn == 0) &&
-                                    (cordnt[t_row - 1][t_column] == '\0') &&
-                                    (cordnt[t_row][t_column] == '\0') &&
+                                    (cordnt[t_row - 1][t_column] == ' ') &&
+                                    (cordnt[t_row][t_column] == ' ') &&
                                     (r_row == 1)) {
                                 return true;
                             }
@@ -265,7 +266,9 @@ public class InitGame {
 // First(white) for '\u2659'
         public void play_game(){
             Scanner sc = new Scanner(System.in);
-            while (true){
+            boolean continueLoop = true;
+            while (continueLoop){
+
                 //white turn
                 if (user_color == '\u2659'){
                     System.out.println("");
@@ -342,6 +345,22 @@ public class InitGame {
                             System.out.println("you do the wrong way!");
                         }
 
+                    }
+                }
+
+                //Check if there is a winner!
+                // cordnt[1][0]=cordnt[1][1]=cordnt[1][2]=cordnt[1][3]='\u265F';
+                for(int i=0;i<length;i++){
+                    if(cordnt[length-1][i]=='\u265F'){
+                        System.out.println("");
+                        System.out.println("the \u265F(black) win!");
+                        continueLoop = false;
+                        break;
+                    } else if (cordnt[0][i]=='\u2659') {
+                        System.out.println("");
+                        System.out.println(("the \u2659(white) win!"));
+                        continueLoop = false;
+                        break;
                     }
                 }
 
