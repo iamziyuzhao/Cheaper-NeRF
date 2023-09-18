@@ -3,11 +3,8 @@ import java.util.*;
 public class Pawntastic {
     public static void main(String[] args){
         //gameSize 4*4 5*5 8*8
-        Integer[] gameSize = {1, 2, 3};
-        int length = 0;
+        int length;
         //chessPiece
-        String[] chessPiece = {"O", "X"};
-        //usercolor
         char userColor = ' ';
 
         //--Ask game size from user
@@ -31,26 +28,27 @@ public class Pawntastic {
 
         //--Ask which method from user
         System.out.println("Which method you prefer?\n"
-            + "1.randomly\n"
-            + "2. MINIMAX\n"
-            + "3. H-MINIMAX with α/β");
-        //todo: check the input from user
+            + "1. An agent that plays randomly\n"
+            + "2. An agent that uses MINIMAX\n"
+            + "3. An agent that uses H-MINIMAX with a fixed depth cutoff and alpha-beta pruning\n"
+        );
         Integer realMethod = Integer.parseInt(sc.nextLine());
 
         //--Ask which color from user
-        //todo: check the input
-
         System.out.println("which color you want to play(white for w or black for b):(white go first)");
         String color = sc.nextLine();
         if (color.equals("w")){
            userColor = '\u2659';
-        }else{
+        }else if(color.equals("b")){
            userColor = '\u265F';
+        }else{
+            System.out.println("you are doing the wrong input please restart the program!");
         }
         System.out.println(userColor);
+        Minimax minimax = new Minimax(realMethod,userColor,length);
 
 
-        InitGame game = new InitGame(length,userColor);
+        InitGame game = new InitGame(length,userColor,minimax);
         game.gameBoard();
         game.play_game();
         System.out.println(userColor);

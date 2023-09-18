@@ -1,8 +1,8 @@
 //to store the pawn
-public class Point {
+public class Pointen {
     private int column,row;
 
-    public Point(int row, int column) {
+    public Pointen(int row, int column) {
         this.row = row;
         this.column = column;
     }
