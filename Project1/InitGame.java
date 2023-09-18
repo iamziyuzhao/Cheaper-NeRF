@@ -305,44 +305,48 @@ public class InitGame {
 
             while (continueLoop){
                 if (turnColor == '\u2659') {
+                    boolean reEnter = true;
                     //white user turn
                     if (user_color == '\u2659') {
-                        //white user turn
-                        System.out.println("");
-                        System.out.println("Next to play:  WHITE/\u2659");
+                        while(reEnter) {
+                            //white user turn
+                            System.out.println("");
+                            System.out.println("Next to play:  WHITE/\u2659");
 
-                        //Measure the Elapsed time
-                        System.out.print("your move: (if you want to move from b4 to b3(remember start point always in first), typing:b4b3)\n" + "(? for help)\n");
-                        //                    long startTime = System.currentTimeMillis();
-                        String move = sc.next();
-                        System.out.println(move);
-                        if (move.equals("?")) {
-                            System.out.println(
-                                    "There is 2 condition for the legal movement: \n" +
-                                            "1. only go forward,which means can't downward\n" +
-                                            "2. go diagonally only if there is a opponent pawn\n"
-                            );
-                        } else {
-                            //Initial the movement
-                            char[] movement = move.toCharArray();
-                            int r_column = (int) (movement[0]) - 97;
-                            int r_row = (int) (movement[1]) - 49;
-                            int column = (int) (movement[2]) - 97;
-                            int row = (int) (movement[3]) - 49;
-                            Pointen r_point = new Pointen(r_row, r_column);
-                            Pointen t_point = new Pointen(row, column);
-
-                            //check the movement are legal
-                            //NOTICE: row and column revers in 2-d array(cordnt)
-                            if (checkVali(cordnt, r_point, t_point, user_color)) {
-                                cordnt[r_row][r_column] = ' ';
-                                cordnt[row][column] = '\u2659';
-                                gameBoard();
+                            //Measure the Elapsed time
+                            System.out.print("your move: (if you want to move from b4 to b3(remember start point always in first), typing:b4b3)\n" + "(? for help)\n");
+                            //                    long startTime = System.currentTimeMillis();
+                            String move = sc.next();
+                            System.out.println(move);
+                            if (move.equals("?")) {
+                                System.out.println(
+                                        "There is 2 condition for the legal movement: \n" +
+                                                "1. only go forward,which means can't downward\n" +
+                                                "2. go diagonally only if there is a opponent pawn\n"
+                                );
                             } else {
-                                System.out.println("you do the wrong way!");
+                                //Initial the movement
+                                char[] movement = move.toCharArray();
+                                int r_column = (int) (movement[0]) - 97;
+                                int r_row = (int) (movement[1]) - 49;
+                                int column = (int) (movement[2]) - 97;
+                                int row = (int) (movement[3]) - 49;
+                                Pointen r_point = new Pointen(r_row, r_column);
+                                Pointen t_point = new Pointen(row, column);
+
+                                //check the movement are legal
+                                //NOTICE: row and column revers in 2-d array(cordnt)
+                                if (checkVali(cordnt, r_point, t_point, user_color)) {
+                                    cordnt[r_row][r_column] = ' ';
+                                    cordnt[row][column] = '\u2659';
+                                    reEnter=false;
+                                    gameBoard();
+                                } else {
+                                    System.out.println("you do the wrong way!");
+                                }
+
+
                             }
-
-
                         }
                     }else{
                         //Agent white turn
@@ -353,6 +357,11 @@ public class InitGame {
                         int r_row = r_point.getRow();
                         int column = t_point.getColumn();
                         int row = t_point.getRow();
+                        char rc = (char)(r_column+97);
+                        char c = (char)(column+97);
+                        int rr=r_row+1;
+                        int r=row+1;
+                        System.out.println("I move from "+rc+rr+" to "+c+r);
 
                         cordnt[r_row][r_column]=' ';
                         cordnt[row][column]='\u2659';
@@ -363,45 +372,50 @@ public class InitGame {
                 }
 
                 else if(turnColor == '\u265F') {
-
+                    boolean reEnter = true;
                     //black turn
                     if (user_color == '\u265F') {
-                        //black user turn
-                        System.out.println("");
-                        System.out.println("Next to play:  BLACK/\u265F");
+                        while(reEnter) {
+                            //black user turn
+                            System.out.println("");
+                            System.out.println("Next to play:  BLACK/\u265F");
 
-                        //Measure the Elapsed time
-                        System.out.print("your move: (if you want to move from b4 to b3(remember start point always in first), typing:b4b3)\n" + "(? for help)\n");
-                        //                    long startTime = System.currentTimeMillis();
-                        String move = sc.next();
-                        System.out.println(move);
-                        if (move.equals("?")) {
-                            System.out.println(
-                                    "There is 2 condition for the legal movement: \n" +
-                                            "1. only go forward,which means can't downward\n" +
-                                            "2. go diagonally only if there is a opponent pawn\n"
-                            );
-                        } else {
-                            //Initial the movement
-                            char[] movement = move.toCharArray();
-                            int r_column = (int) (movement[0]) - 97;
-                            int r_row = (int) (movement[1]) - 49;
-                            int column = (int) (movement[2]) - 97;
-                            int row = (int) (movement[3]) - 49;
-                            Pointen r_point = new Pointen(r_row, r_column);
-                            Pointen t_point = new Pointen(row, column);
-
-                            //check the movement are legal
-                            //NOTICE: row and column revers in 2-d array(cordnt)
-                            if (checkVali(cordnt, r_point, t_point, user_color)) {
-                                cordnt[r_row][r_column] = ' ';
-                                cordnt[row][column] = '\u265F';
-                                gameBoard();
+                            //Measure the Elapsed time
+                            System.out.print("your move: (if you want to move from b4 to b3(remember start point always in first), typing:b4b3)\n" + "(? for help)\n");
+                            //                    long startTime = System.currentTimeMillis();
+                            String move = sc.next();
+                            System.out.println(move);
+                            if (move.equals("?")) {
+                                System.out.println(
+                                        "There is 2 condition for the legal movement: \n" +
+                                                "1. only go forward,which means can't downward\n" +
+                                                "2. go diagonally only if there is a opponent pawn\n"
+                                );
                             } else {
-                                System.out.println("you do the wrong way!");
-                            }
+                                //Initial the movement
+                                char[] movement = move.toCharArray();
+                                int r_column = (int) (movement[0]) - 97;
+                                int r_row = (int) (movement[1]) - 49;
+                                int column = (int) (movement[2]) - 97;
+                                int row = (int) (movement[3]) - 49;
+                                Pointen r_point = new Pointen(r_row, r_column);
+                                Pointen t_point = new Pointen(row, column);
 
+                                //check the movement are legal
+                                //NOTICE: row and column revers in 2-d array(cordnt)
+                                if (checkVali(cordnt, r_point, t_point, user_color)) {
+                                    cordnt[r_row][r_column] = ' ';
+                                    cordnt[row][column] = '\u265F';
+                                    reEnter = false;
+                                    gameBoard();
+                                } else {
+                                    System.out.println("you do the wrong way!");
+                                }
+
+                            }
                         }
+
+
                     }else{
                         //Agent black turn
                         Pairmove pairmove = minimax.makeDecision(cordnt);
@@ -411,6 +425,11 @@ public class InitGame {
                         int r_row = r_point.getRow();
                         int column = t_point.getColumn();
                         int row = t_point.getRow();
+                        char rc = (char)(r_column+97);
+                        char c = (char)(column+97);
+                        int rr=r_row+1;
+                        int r=row+1;
+                        System.out.println("I move from "+rc+rr+" to "+c+r);
 
                         cordnt[r_row][r_column]=' ';
                         cordnt[row][column]='\u265F';
