@@ -362,7 +362,6 @@ public class InitGame {
                     int rr=r_row+1;
                     int r=row+1;
                     System.out.println("I move from "+rc+rr+" to "+c+r);
-
                     cordnt[r_row][r_column]=' ';
                     cordnt[row][column]='\u2659';
                     gameBoard();

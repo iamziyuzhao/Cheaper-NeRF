@@ -2,14 +2,13 @@ import java.util.*;
 
 public class Minimax {
     private char color;
-    private char  agent_color;
+    private char agent_color;
     private int strategy;
     private InitGame game;
 
     public static final char BLACKPAWN = '\u265F';
     public static final char WHITEPAWN = '\u2659';
     public static final char EMPTY = ' ';
-
 
     public Minimax(int strategy, char color, int length){
         this.strategy = strategy;
@@ -61,21 +60,25 @@ public class Minimax {
     
         for (Pointen start : validMoves.keySet()) {
             for (Pointen end : validMoves.get(start)) {
+                int endR = end.getRow();
+                int endC = end.getColumn();
+                int startR = start.getRow();
+                int startC = start.getColumn();
                 // Apply the move
-                char tmp = board[end.getRow()][end.getColumn()];
-                board[end.getRow()][end.getColumn()] = whoseTurn;
-                board[start.getRow()][start.getColumn()] = EMPTY;
+                char tmp = board[endR][endC];
+                board[endR][endC] = whoseTurn;
+                board[startR][startC] = EMPTY;
     
                 int moveValue;
                 if (useAlphaBetaPruning) {
-                    moveValue = hMinimax(board, 1, cutoffDepth, Integer.MIN_VALUE, Integer.MAX_VALUE, (whoseTurn == WHITEPAWN) ? BLACKPAWN : WHITEPAWN);
+                    moveValue = hMinimax(board, 1, cutoffDepth, Integer.MIN_VALUE, Integer.MAX_VALUE, true);
                 } else {
-                    moveValue = minimax(board, 1, (whoseTurn == WHITEPAWN) ? BLACKPAWN : WHITEPAWN);
+                    moveValue = minimax(board, whoseTurn, true);
                 }
     
                 // Undo the move
-                board[end.getRow()][end.getColumn()] = tmp;
-                board[start.getRow()][start.getColumn()] = whoseTurn;
+                board[endR][endC] = tmp;
+                board[startR][startC] = whoseTurn;
     
                 if ((whoseTurn == WHITEPAWN && moveValue > bestValue) || (whoseTurn == BLACKPAWN && moveValue < bestValue)) {
                     bestValue = moveValue;
@@ -87,17 +90,21 @@ public class Minimax {
         return bestMove;
     }    
 
-    public int hMinimax(char[][] board, int depth, int cutoffDepth, int alpha, int beta, char whoseTurn) {
+    public int hMinimax(char[][] board, int depth, int cutoffDepth, int alpha, int beta, boolean isMax) {
         int score = evaluate(board);
     
         // if terminate
         if (score == 10 || 
             score == -10 || 
-            !isMovable(board) || 
             depth == cutoffDepth) 
             return score;
+        
+        // if no move is left
+        if (game.moveAble_list(board, WHITEPAWN).isEmpty() && 
+            game.moveAble_list(board, BLACKPAWN).isEmpty())
+            return 0;
     
-        if (whoseTurn == WHITEPAWN) {
+        if (isMax) {
             return evaluateMovesWithPruning(board, depth, cutoffDepth, alpha, beta, WHITEPAWN, true);
         } else {
             return evaluateMovesWithPruning(board, depth, cutoffDepth, alpha, beta, BLACKPAWN, false);
@@ -107,8 +114,6 @@ public class Minimax {
     private int evaluateMovesWithPruning(char[][] board, int depth, int cutoffDepth, int alpha, int beta, char pawn, boolean isMaximizing) {
         Map<Pointen, ArrayList<Pointen>> validMoves = game.moveAble_list(board, pawn);
         int bestEval = isMaximizing ? Integer.MIN_VALUE : Integer.MAX_VALUE;
-        //System.out.print("1 alpha: " + alpha + " beta: " + beta);
-        //System.out.println("depth: "+depth);
         for (Pointen start : validMoves.keySet()) {
             for (Pointen end : validMoves.get(start)) {
                 // Apply the move
@@ -116,7 +121,7 @@ public class Minimax {
                 board[end.getRow()][end.getColumn()] = pawn;
                 board[start.getRow()][start.getColumn()] = EMPTY;
     
-                int eval = hMinimax(board, depth + 1, cutoffDepth, alpha, beta, (pawn == WHITEPAWN) ? BLACKPAWN : WHITEPAWN);
+                int eval = hMinimax(board, depth + 1, cutoffDepth, alpha, beta, !isMaximizing);
     
                 // Undo the move
                 board[end.getRow()][end.getColumn()] = tmp;
@@ -129,134 +134,76 @@ public class Minimax {
                     bestEval = Math.min(bestEval, eval);
                     beta = Math.min(beta, eval);
                 }
-                
+                System.out.println("alpha: " + alpha + " ;beta: " + beta);
                 if (beta <= alpha) break;  // Alpha-beta pruning
             }
         }
-        //System.out.println(" 2 alpha: " + alpha + " ;beta: " + beta);
+        //System.out.println("alpha: " + alpha + " ;beta: " + beta);
         return bestEval;
     }
-     
-    public int minimax(char[][] board, int depth, char whoseTurn) {
+
+    public boolean isTerminal(char[][] board)
+    {
+        int boardSize = board[0].length;
+        for (int c = 0; c < boardSize; c++)
+            if (board[0][c] != EMPTY || board[boardSize-1][c] != EMPTY)
+                return true;
+
+        return false;
+    }
+
+    private static final int WHITE_WIN = 10;
+    private static final int BLACK_WIN = -10;
+    private int minimax(char[][] board, char whoseTurn, boolean isMax) {
+        int bestVal = isMax ? Integer.MIN_VALUE : Integer.MAX_VALUE; //best value
+        
         int score = evaluate(board);
-        
-        // Base Cases
-        if (score == 10 || score == -10) return score;
-        if (!isMovable(board)) return 0;
-    
-        // Recursive Cases
-        if (whoseTurn == WHITEPAWN) {
-            //return evaluatePawnMoves(board, depth, WHITEPAWN, Integer.MIN_VALUE, true);
-            return evaluatePawnMoves(board, depth, WHITEPAWN, true);
-        } else {
-            //return evaluatePawnMoves(board, depth, BLACKPAWN, Integer.MAX_VALUE, false);
-            return evaluatePawnMoves(board, depth, BLACKPAWN, false);
-        }
+        if (score == WHITE_WIN || score == BLACK_WIN) return score;
+
+        // If no move left
+        if (game.moveAble_list(board, WHITEPAWN).isEmpty() && 
+            game.moveAble_list(board, BLACKPAWN).isEmpty())
+            return 0;
+
+        return findMove(board, bestVal, whoseTurn, isMax);
     }
     
-    private int evaluatePawnMoves(char[][] board, int depth, char pawn, boolean isMaximizing) {
-        Map<Pointen, ArrayList<Pointen>> validMoves = game.moveAble_list(board, pawn);
-        int bestEval = isMaximizing ? Integer.MIN_VALUE : Integer.MAX_VALUE;
-        
-        for (Pointen start : validMoves.keySet()) {
-            for (Pointen end : validMoves.get(start)) {
-                // Apply the move
+    public int findMove(char[][] board, int bestVal, char whoseTurn, boolean isMax)
+    {
+        Map<Pointen, ArrayList<Pointen>> validMoves = game.moveAble_list(board, whoseTurn);
+
+        for (Pointen start : validMoves.keySet()) 
+        {
+            for (Pointen end : validMoves.get(start)) 
+            {
+                // Move
                 char tmp = board[end.getRow()][end.getColumn()];
-                board[end.getRow()][end.getColumn()] = pawn;
+                board[end.getRow()][end.getColumn()] = whoseTurn;
                 board[start.getRow()][start.getColumn()] = EMPTY;
-    
-                int eval = minimax(board, depth + 1, (pawn == WHITEPAWN) ? BLACKPAWN : WHITEPAWN);
-    
-                // Undo the move
+
+                int currentVal = minimax(board, whoseTurn, !isMax);
+
+                if (isMax)
+                    if (currentVal > bestVal)
+                        bestVal = currentVal;
+                else
+                    if (currentVal < bestVal)
+                        bestVal = currentVal;
+                
+                // Undo
                 board[end.getRow()][end.getColumn()] = tmp;
-                board[start.getRow()][start.getColumn()] = pawn;
-    
-                bestEval = isMaximizing ? Math.max(bestEval, eval) : Math.min(bestEval, eval);
+                board[start.getRow()][start.getColumn()] = whoseTurn;
             }
         }
-        System.out.println("bestEval: " + bestEval);
-        return bestEval;
+        return bestVal;
     }
-    
-    private int evaluatePawnMoves(char[][] board, int depth, char pawn, int bestSoFar, boolean isMaximizing) {
-        int boardSize = board.length;
-        System.out.println("depth: " + depth);
-        System.out.print("1 bestsoFar: " + bestSoFar);
-        for (int i = 0; i < boardSize; i++) {
-            for (int j = 0; j < boardSize; j++) {
-                if (board[i][j] == pawn) {
-                    // Try to move forward
-                    int forward = (pawn == WHITEPAWN) ? 1 : -1;
-                    if (isValidMove(board, i + forward, j)) {
-                        //System.out.println("Try to move forward");
-                        applyMove(board, i, j, i + forward, j, pawn);
-                        int current = minimax(board, depth + 1, (pawn == WHITEPAWN) ? BLACKPAWN : WHITEPAWN);
-                        undoMove(board, i, j, i + forward, j, pawn);
-                        bestSoFar = isMaximizing ? Math.max(bestSoFar, current) : Math.min(bestSoFar, current);
-                    }
-    
-                    // Try initial double move
-                    if ((pawn == WHITEPAWN && i == 1) || (pawn == BLACKPAWN && i == boardSize - 2)) {
-                        if (isValidMove(board, i + 2 * forward, j)) {
-                            System.out.println("Try initial double move");
-                            applyMove(board, i, j, i + 2 * forward, j, pawn);
-                            int current = minimax(board, depth + 1, (pawn == WHITEPAWN) ? BLACKPAWN : WHITEPAWN);
-                            undoMove(board, i, j, i + 2 * forward, j, pawn);
-                            bestSoFar = isMaximizing ? Math.max(bestSoFar, current) : Math.min(bestSoFar, current);
-                        }
-                    }
-    
-                    // Try diagonal captures
-                    for (int d = -1; d <= 1; d += 2) { // -1 for left, 1 for right
-                        if (isValidCapture(board, i + forward, j + d, pawn)) {
-                            System.out.println("Try diagonal captures");
-                            applyMove(board, i, j, i + forward, j + d, pawn);
-                            int current = minimax(board, depth + 1, (pawn == WHITEPAWN) ? BLACKPAWN : WHITEPAWN);
-                            undoMove(board, i, j, i + forward, j + d, pawn);
-                            bestSoFar = isMaximizing ? Math.max(bestSoFar, current) : Math.min(bestSoFar, current);
-                        }
-                    }
-                }
-            }
-        }
-        System.out.println("2 bestsoFar: " + bestSoFar);
-        return bestSoFar;
-    }
-    
-    private boolean isValidMove(char[][] board, int x, int y) {
-        return x >= 0 && x < board.length && y >= 0 && y < board.length && board[x][y] == EMPTY;
-    }
-    
-    private boolean isValidCapture(char[][] board, int x, int y, char pawn) {
-        return x >= 0 && x < board.length && y >= 0 && y < board.length && 
-               (pawn == WHITEPAWN ? board[x][y] == BLACKPAWN : board[x][y] == WHITEPAWN);
-    }
-    
-    private void applyMove(char[][] board, int startX, int startY, int endX, int endY, char pawn) {
-        board[startX][startY] = EMPTY;
-        board[endX][endY] = pawn;
-    }
-    
-    private void undoMove(char[][] board, int startX, int startY, int endX, int endY, char pawn) {
-        board[endX][endY] = EMPTY;
-        board[startX][startY] = pawn;
-    }
-    
+
     private int evaluate(char[][] board) {
         for (int i = 0; i < board.length; i++) {
             if (board[0][i] == BLACKPAWN) return -10;
             if (board[board.length - 1][i] == WHITEPAWN) return 10;
         }
         return 0;
-    }
-
-    private boolean isMovable(char[][] board) {
-        for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board.length; j++)
-                if (board[i][j] == EMPTY) 
-                    return true;
-        }
-        return false;
     }
 
     public Pairmove randomly(char[][] cordnt) {
