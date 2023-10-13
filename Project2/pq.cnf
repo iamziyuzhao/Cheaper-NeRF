@@ -1,0 +1,5 @@
+c This is a comment explaining the CNF for {P, P ⇒ Q} |= Q
+p cnf 2 3
+1 0
+-1 2 0
+-2 0
