@@ -23,7 +23,7 @@ public class main {
         
         // Part 3
         SatTest sat = new SatTest();
-		sat.WalkSAT(kb);
+	sat.WalkSAT(kb);
         
     }
 }
