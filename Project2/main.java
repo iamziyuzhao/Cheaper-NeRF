@@ -1,3 +1,4 @@
+package csc242_proj2;
 import java.io.IOException;
 import java.util.*;
 
@@ -19,5 +20,10 @@ public class main {
         element.add(2);
         alpha.add(element);
         System.out.println(checker.ttEntails(kb, alpha));
+        
+        // Part 3
+        SatTest sat = new SatTest();
+		sat.WalkSAT(kb);
+        
     }
 }
