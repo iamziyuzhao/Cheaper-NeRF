@@ -23,15 +23,17 @@ public class CNFreader {
             }
 
             String[] literals = line.split("\\s+");
-            for (String literal : literals) {
-                int value = Integer.parseInt(literal);
-                if (value == 0) {
-                    if (!currentClause.isEmpty()) {
-                        clauses.add(new ArrayList<>(currentClause));
-                        currentClause.clear();
+            if(!line.isEmpty()) {
+                for (String literal : literals) {
+                    int value = Integer.parseInt(literal);
+                    if (value == 0) {
+                        if (!currentClause.isEmpty()) {
+                            clauses.add(new ArrayList<>(currentClause));
+                            currentClause.clear();
+                        }
+                    } else {
+                        currentClause.add(value);
                     }
-                } else {
-                    currentClause.add(value);
                 }
             }
         }
