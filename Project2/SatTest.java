@@ -1,4 +1,3 @@
-package csc242_proj2;
 import java.util.*;
 
 public class SatTest {
