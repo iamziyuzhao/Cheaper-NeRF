@@ -46,7 +46,7 @@ public class ModelChecker {
         }
     }
 
-    private Set<Integer> getSymbols(List<List<Integer>> clauses)
+    protected Set<Integer> getSymbols(List<List<Integer>> clauses)
     {
         Set<Integer> symbols = new HashSet<>();
 
