@@ -1,4 +1,3 @@
-
 package csc242_proj2;
 
 import java.io.BufferedReader;

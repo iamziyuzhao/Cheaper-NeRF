@@ -30,16 +30,16 @@ public class main {
 
 
         System.out.println("----Part 2 TT-ENTAILS----");
-
-        CNFreader reader = new CNFreader(sc.nextLine());
-        // System.out.println("Clauses:");
-        List<List<Integer>> kb = reader.getClauses();
-        // Part 2
-        ModelChecker checker = new ModelChecker();
         // Q1
+        System.out.println("Paths of CNF file for Q1 in Part 2:\n"+
+                           "./cnfs/part2/pq.cnf");
+        System.out.println("Q1. Please Enter the path of your CNF file");
+        CNFreader reader2 = new CNFreader(sc.nextLine());
+        List<List<Integer>> kb2 = reader2.getClauses();
+        ModelChecker checker = new ModelChecker();
         List<List<Integer>> alpha = new ArrayList<>();
         alpha.add(Arrays.asList(2));
-        System.out.println(checker.ttEntails(kb, alpha) + "\n");
+        System.out.println(checker.ttEntails(kb2, alpha) + "\n");
         alpha.clear();
 
         // Q2
@@ -48,74 +48,78 @@ public class main {
         // P3,1 = 5
         // B1,1 = 7     B1,2 = 9
         // B2,1 = 8
+        System.out.println("Paths of CNF file for Q2 in Part 2:\n"+
+                           "./cnfs/part2/ww.cnf");
         System.out.println("Q2. Please Enter the path of your CNF file");
-        reader = new CNFreader(sc.nextLine());
-        kb = reader.getClauses();
+        reader2 = new CNFreader(sc.nextLine());
+        kb2 = reader2.getClauses();
         // The agent starts at [1,1]. Add perception: R4: ¬B1,1
-        kb.add(Arrays.asList(-7));
+        kb2.add(Arrays.asList(-7));
         // Entail ¬P1,2
         alpha.add(Arrays.asList(-2));
-        System.out.println(checker.ttEntails(kb, alpha) + "\n");
+        System.out.println(checker.ttEntails(kb2, alpha) + "\n");
         alpha.clear();
         // Entail ¬P2,1
         alpha.add(Arrays.asList(-3));
-        System.out.println(checker.ttEntails(kb, alpha) + "\n");
+        System.out.println(checker.ttEntails(kb2, alpha) + "\n");
         alpha.clear();
         // Not ential P2,2
         alpha.add(Arrays.asList(4));
-        System.out.println(checker.ttEntails(kb, alpha) + "\n");
+        System.out.println(checker.ttEntails(kb2, alpha) + "\n");
         alpha.clear();
         // Not ential ¬P2,2
         alpha.add(Arrays.asList(-4));
-        System.out.println(checker.ttEntails(kb, alpha) + "\n");
+        System.out.println(checker.ttEntails(kb2, alpha) + "\n");
         alpha.clear();
 
         // The agent moves to [2, 1]. Add perception: R5: B2,1
-        kb.add(Arrays.asList(8));
+        kb2.add(Arrays.asList(8));
         // Ential P2,2 ∨ P3,1
         alpha.add(Arrays.asList(4,5));
-        System.out.println(checker.ttEntails(kb, alpha) + "\n");
+        System.out.println(checker.ttEntails(kb2, alpha) + "\n");
         alpha.clear();
         // Not ential P2,2
         alpha.add(Arrays.asList(4));
-        System.out.println(checker.ttEntails(kb, alpha) + "\n");
+        System.out.println(checker.ttEntails(kb2, alpha) + "\n");
         alpha.clear();
         // Not ential ¬P2,2
         alpha.add(Arrays.asList(-4));
-        System.out.println(checker.ttEntails(kb, alpha) + "\n");
+        System.out.println(checker.ttEntails(kb2, alpha) + "\n");
         alpha.clear();
         // Not ential P3,1
         alpha.add(Arrays.asList(5));
-        System.out.println(checker.ttEntails(kb, alpha) + "\n");
+        System.out.println(checker.ttEntails(kb2, alpha) + "\n");
         alpha.clear();
         // Not ential ¬P3,1
         alpha.add(Arrays.asList(-5));
-        System.out.println(checker.ttEntails(kb, alpha) + "\n");
+        System.out.println(checker.ttEntails(kb2, alpha) + "\n");
         alpha.clear();
 
         // Move to [1, 2]. Add perception: R6: ¬B1,2
-        kb.add(Arrays.asList(-9));
+        kb2.add(Arrays.asList(-9));
         // Ential ¬P2,2
         alpha.add(Arrays.asList(-4));
-        System.out.println(checker.ttEntails(kb, alpha) + "\n");
+        System.out.println(checker.ttEntails(kb2, alpha) + "\n");
         alpha.clear();
         // Ential P3,1
         alpha.add(Arrays.asList(5));
-        System.out.println(checker.ttEntails(kb, alpha) + "\n");
+        System.out.println(checker.ttEntails(kb2, alpha) + "\n");
         alpha.clear();
 
         // Q3
+        System.out.println("Paths of CNF file for Q3 in Part 2:\n"+
+                           "./cnfs/part2/unicorn.cnf");
         System.out.println("Q3. Please Enter the path of your CNF file");
-        reader = new CNFreader(sc.nextLine());
-        kb = reader.getClauses();
+        reader2 = new CNFreader(sc.nextLine());
+        kb2 = reader2.getClauses();
         alpha.add(Arrays.asList(1));
-        System.out.println("The unicorn is mythical. " + checker.ttEntails(kb, alpha) + "\n");
+        System.out.println("The unicorn is mythical. " + checker.ttEntails(kb2, alpha) + "\n");
         alpha.clear();
         alpha.add(Arrays.asList(5));
-        System.out.println("The unicorn is magical. " + checker.ttEntails(kb, alpha) + "\n");
+        System.out.println("The unicorn is magical. " + checker.ttEntails(kb2, alpha) + "\n");
         alpha.clear();
         alpha.add(Arrays.asList(4));
-        System.out.println("The unicorn is horned. " + checker.ttEntails(kb, alpha));
+        System.out.println("The unicorn is horned. " + checker.ttEntails(kb2, alpha));
         alpha.clear();
 
 
