@@ -1,3 +1,6 @@
+
+package csc242_proj2;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -18,7 +21,7 @@ public class CNFreader {
             line = line.trim();
 
             // Skip comments or p-lines
-            if (line.startsWith("c") || line.startsWith("p")) {
+            if (line.startsWith("c") || line.startsWith("p") || line.startsWith("C")) {
                 continue;
             }
 

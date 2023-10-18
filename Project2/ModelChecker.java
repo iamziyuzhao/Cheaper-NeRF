@@ -1,6 +1,8 @@
+package csc242_proj2;
+
 import java.util.*;
 
-public class ModelChecker 
+public class ModelChecker
 {
 
     public ModelChecker()
@@ -54,22 +56,22 @@ public class ModelChecker
     }
 
     protected boolean PL_True(List<List<Integer>> clauses, List<Integer> model ) {
-		for(List<Integer> clause: clauses) 
+        for(List<Integer> clause: clauses)
         {
-			boolean clause_true = false;
-			for(Integer literal : clause) 
+            boolean clause_true = false;
+            for(Integer literal : clause)
             {
-				if(model.contains(literal)) 
+                if(model.contains(literal))
                 {
-					clause_true = true;
-					break;
-				}
-			}
-			if(clause_true == false) 
+                    clause_true = true;
+                    break;
+                }
+            }
+            if(clause_true == false)
             {
-				return false;
-			}
-		}
-		return true;
-	}
+                return false;
+            }
+        }
+        return true;
+    }
 }

@@ -1,3 +1,5 @@
+package csc242_proj2;
+
 import java.util.*;
 
 public class SatTest {
@@ -125,7 +127,7 @@ public class SatTest {
 		 Scanner scanner = new Scanner(System.in);
 		 int max_tries = -1;
 		 do {
-			 System.out.println("Please enter the maximize tries:");
+			 System.out.println("Please enter the maximize tries(Recommand 2000 as input):");
 			 max_tries = scanner.nextInt();
 		 }while(max_tries<0);
 		return max_tries;
@@ -134,7 +136,7 @@ public class SatTest {
 		 Scanner scanner = new Scanner(System.in);
 		 int max_flips = -1;
 		 do {
-			 System.out.println("Please enter the maximize flips:");
+			 System.out.println("Please enter the maximize flips(Recommand 2000 as input):");
 			 max_flips = scanner.nextInt();
 		 }while(max_flips<0);
 		return max_flips;
@@ -142,16 +144,11 @@ public class SatTest {
 	 
 	 //print out
 	 private void PrintBool(List<Integer> list) {
-		 if(list == null) System.out.println("no result found.");
+		 if(list == null) System.out.print("no result found (NOTICE: sometimes if max_tries and max_flips are lower will leads to error).");
 		 else {
-			 System.out.print("[ ");
-			 for(Integer i:list) {
-				 if(i<0) {
-					 System.out.print("F ");
-				 }
-				 else System.out.print("T ");
-			 }
-			 System.out.println("]");
+			 System.out.println("The correct SAT Result is:");
+			 System.out.println(list);
+			 System.out.println("");
 		 }
 	 }
 
