@@ -1,0 +1,26 @@
+network aima-wetgrass {
+}
+variable C {
+    type discrete [2] { true false };
+}
+variable S {
+    type discrete [2] { true false };
+}
+variable R {
+    type discrete [2] { true false };
+}
+variable W {
+    type discrete [2] { true false };
+}
+probability ( C ) {
+	table 0.5 0.5 ;
+}
+probability ( S | C ) {
+	table 0.10 0.50 0.90 0.50 ;
+}
+probability ( R | C ) {
+	table 0.80 0.20 0.20 0.80 ;
+}
+probability ( W | S R ) {
+	table 0.99 0.90 0.90 0.00 0.01 0.10 0.10 1.0 ;
+}

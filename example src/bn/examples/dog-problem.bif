@@ -1,0 +1,32 @@
+network Dog-Problem {
+}
+variable light-on {
+	type discrete [2] { true false };
+}
+variable bowel-problem {
+	type discrete [2] { true false };
+}
+variable dog-out {
+	type discrete [2] { true false };
+}
+variable hear-bark {
+	type discrete [2] { true false };
+}
+variable family-out {
+	type discrete [2] { true false };
+}
+probability ( light-on | family-out ) {
+	table 0.6 0.05 0.4 0.95 ;
+}
+probability ( bowel-problem ) {
+	table 0.01 0.99 ;
+}
+probability ( dog-out | bowel-problem, family-out ) {
+	table 0.99 0.97 0.90 0.3 0.01 0.03 0.1 0.7 ;
+}
+probability ( hear-bark | dog-out ) {
+	table 0.7 0.01 0.3 0.99 ;
+}
+probability ( family-out ) {
+	table 0.15 0.85 ;
+}

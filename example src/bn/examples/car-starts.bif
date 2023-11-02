@@ -1,0 +1,110 @@
+network Car-Starts {
+}
+variable  Alternator {
+	type discrete [2] {  Ok  Faulted };
+}
+variable  FanBelt {
+	type discrete [3] {  Ok  Slipping  Broken };
+}
+variable  Leak {
+	type discrete [2] {  Leak  NoLeak };
+}
+variable  Charge {
+	type discrete [2] {  Good  Low };
+}
+variable  BatteryAge {
+	type discrete [2] {  New  Old };
+}
+variable  BatteryState {
+	type discrete [2] {  Ok  Weak };
+}
+variable  BatteryPower {
+	type discrete [2] {  Good  Poor };
+}
+variable  GasInTank {
+	type discrete [2] {  Gas  NoGas };
+}
+variable  GasGauge {
+	type discrete [2] {  Gas  NoGas };
+}
+variable  Lights {
+	type discrete [2] {  Work  NoLight };
+}
+variable  Radio {
+	type discrete [2] {  Works  Dead };
+}
+variable  Starter {
+	type discrete [2] {  Ok  Faulted };
+}
+variable  Leak2 {
+	type discrete [2] {  True  False };
+}
+variable  EngineCranks {
+	type discrete [2] {  Cranks  NoCrank };
+}
+variable  FuelPump {
+	type discrete [2] {  Ok  Faulted };
+}
+variable  Distributor {
+	type discrete [2] {  Ok  Faulted };
+}
+variable  SparkPlugs {
+	type discrete [2] {  Ok  Bad };
+}
+variable  Starts {
+	type discrete [2] {  Yes  No };
+}
+probability (  Alternator ) {
+	table 0.9995 5.0E-4 ;
+}
+probability (  FanBelt ) {
+	table 0.995 0.0020 0.0030 ;
+}
+probability (  Leak ) {
+	table 1.0E-4 0.9999 ;
+}
+probability (  Charge  Alternator  FanBelt  Leak ) {
+	table 0.0 1.0 0.0 0.0 0.0 0.0 0.5 0.5 0.5 0.5 0.5 0.5 1.0 0.0 1.0 1.0 1.0 1.0 0.5 0.5 0.5 0.5 0.5 0.5 ;
+}
+probability (  BatteryAge ) {
+	table 0.7 0.3 ;
+}
+probability (  BatteryState  BatteryAge ) {
+	table 0.99 0.8 0.01 0.2 ;
+}
+probability (  BatteryPower  Charge  BatteryState ) {
+	table 1.0 0.0 0.0 0.0 0.0 1.0 1.0 1.0 ;
+}
+probability (  GasInTank ) {
+	table 0.5 0.5 ;
+}
+probability (  GasGauge  BatteryPower  GasInTank ) {
+	table 1.0 0.0 0.2 0.0 0.0 1.0 0.8 1.0 ;
+}
+probability (  Lights  BatteryPower ) {
+	table 0.9 0.0 0.1 1.0 ;
+}
+probability (  Radio  BatteryPower ) {
+	table 0.9 0.1 0.1 0.9 ;
+}
+probability (  Starter ) {
+	table 0.99 0.01 ;
+}
+probability (  Leak2 ) {
+	table 1.0E-4 0.9999 ;
+}
+probability (  EngineCranks  BatteryPower  Starter  Leak2 ) {
+	table 0.0 1.0 0.0 0.0 0.0 0.2 0.0 0.0 1.0 0.0 1.0 1.0 1.0 0.8 1.0 1.0 ;
+}
+probability (  FuelPump ) {
+	table 0.999 0.0010 ;
+}
+probability (  Distributor ) {
+	table 0.999 0.0010 ;
+}
+probability (  SparkPlugs ) {
+	table 0.9998 2.0E-4 ;
+}
+probability (  Starts  EngineCranks  FuelPump  Distributor  SparkPlugs ) {
+	table 1.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 ;
+}

@@ -1,0 +1,32 @@
+network aima-alarm {
+}
+variable B {
+    type discrete [2] { true false };
+}
+variable E {
+    type discrete [2] { true false };
+}
+variable A {
+    type discrete [2] { true false };
+}
+variable J {
+    type discrete [2] { true false };
+}
+variable M {
+    type discrete [2] { true false };
+}
+probability ( B ) {
+	table 0.001 0.999 ;
+}
+probability ( E ) {
+	table 0.002 0.998 ;
+}
+probability ( A | B E ) {
+	table 0.95 0.94 0.29 0.001 0.05 0.06 0.71 0.999;
+}
+probability ( J | A ) {
+	table 0.90 0.05 0.10 0.95 ;
+}
+probability ( M | A ) {
+	table 0.70 0.01 0.30 0.99 ;
+}
