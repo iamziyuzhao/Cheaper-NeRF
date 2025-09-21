@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"bn.base"},{"l":"bn.core"},{"l":"bn.examples"},{"l":"bn.inference"},{"l":"bn.parser"}];updateSearchResults();
