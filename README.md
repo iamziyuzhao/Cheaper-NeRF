@@ -5,11 +5,14 @@
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![Python](https://img.shields.io/badge/python-3.8+-blue.svg)
 ![TensorFlow](https://img.shields.io/badge/TensorFlow-2.x-orange.svg)
-https://github.com/user-attachments/assets/5ec5e9a5-c710-42b9-9d13-d847f355bd13
+
 
 
 ![Image](https://github.com/user-attachments/assets/c2958adf-7614-4e7d-a6fd-ce6a3fe134ee)
 ![Image](https://github.com/user-attachments/assets/62d83d11-3544-4b3d-aa2f-8c11a9344393)
+
+<img width="350" height="172" alt="Image" src="https://github.com/user-attachments/assets/b620eb20-fe3f-41ba-b36f-abd483829b0e" />
+<img width="352" height="170" alt="Image" src="https://github.com/user-attachments/assets/d4cf6415-2b07-42ff-ae1b-761d7e1f0cc4" />
 
 
 ## 🎯 Revolutionary Cost Reduction in 3D Scene Synthesis
