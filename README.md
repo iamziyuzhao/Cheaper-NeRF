@@ -9,7 +9,7 @@ https://github.com/user-attachments/assets/5ec5e9a5-c710-42b9-9d13-d847f355bd13
 
 
 ![Image](https://github.com/user-attachments/assets/c2958adf-7614-4e7d-a6fd-ce6a3fe134ee)
-
+![Image](https://github.com/user-attachments/assets/62d83d11-3544-4b3d-aa2f-8c11a9344393)
 
 
 ## 🎯 Revolutionary Cost Reduction in 3D Scene Synthesis
