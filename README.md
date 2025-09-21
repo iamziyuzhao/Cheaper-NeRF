@@ -8,7 +8,7 @@
 https://github.com/user-attachments/assets/5ec5e9a5-c710-42b9-9d13-d847f355bd13
 
 
-[![Watch the video](demo.gif)](https://drive.google.com/file/d/1f57Vnr41bB_-e3sRkI51_NlNVQQb_o7s/view?resourcekey)
+![Image](https://github.com/user-attachments/assets/c2958adf-7614-4e7d-a6fd-ce6a3fe134ee)
 
 
 
