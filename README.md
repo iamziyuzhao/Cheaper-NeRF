@@ -294,13 +294,13 @@ This work builds upon the original [NeRF](https://github.com/bmild/nerf) by Mild
 <table>
   <tr>
     <td align="center">
-      <img src="assets/author1.jpg" width="100px;" alt=""/><br />
-      <sub><b>Zhen Zhang</b></sub><br />
+      <img src="assets/author2.jpg" width="100px;" alt=""/><br />
+      <sub><b>Ziyu Zhao</b></sub><br />
       <sub>University of Rochester</sub>
     </td>
     <td align="center">
-      <img src="assets/author2.jpg" width="100px;" alt=""/><br />
-      <sub><b>Ziyu Zhao</b></sub><br />
+      <img src="assets/author1.jpg" width="100px;" alt=""/><br />
+      <sub><b>Zhen Zhang</b></sub><br />
       <sub>University of Rochester</sub>
     </td>
   </tr>
