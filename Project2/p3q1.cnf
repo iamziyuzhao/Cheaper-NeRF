@@ -1,5 +1,0 @@
-c This is a comment explaining the CNF for (x1 ∨ x3 ∨ ¬x4)∧(x4)∧(x2 ∨ ¬x3)
-p cnf 4 3
-1 3 -4 0
-4 0
-2 -3 0
