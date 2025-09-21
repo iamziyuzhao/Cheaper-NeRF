@@ -8,34 +8,32 @@
 
 ## 🎓 Authors
 
-<table>
+<div align="center">
+<table style="width:100%; border-collapse: collapse; border: none;">
   <tr>
-    <td align="center">
-      <img src="assets/author2.jpg" width="100px;" alt=""/><br />
-      <sub><b>Ziyu Zhao</b></sub><br />
-      <sub>University of Rochester</sub>
+    <td align="center" style="border: none; padding: 20px; width: 25%;">
+      <strong>Ziyu Zhao</strong><br />
+      <sub>Computer Science</sub><br />
+      <i><sub>University of Rochester</sub></i><br />
     </td>
-    
-    <td align="center">
-      <img src="assets/author1.jpg" width="100px;" alt=""/><br />
-      <sub><b>Zhen Zhang</b></sub><br />
-      <sub>University of Rochester</sub>
+    <td align="center" style="border: none; padding: 20px; width: 25%;">
+      <strong>Zhen Zhang</strong><br />
+      <sub>Computer Science</sub><br />
+      <i><sub>University of Rochester</sub></i><br />
     </td>
-      
-    <td align="center">
-      <img src="assets/author1.jpg" width="100px;" alt=""/><br />
-      <sub><b>Wuming Zhen</b></sub><br />
-      <sub>Cornell University</sub>
+    <td align="center" style="border: none; padding: 20px; width: 25%;">
+      <strong>Wuming Zheng</strong><br />
+      <sub>Computer Science</sub><br />
+      <i><sub>Cornell University</sub></i><br />
     </td>
-    
-    <td align="center">
-      <img src="assets/author1.jpg" width="100px;" alt=""/><br />
-      <sub><b>Yinhao Qian</b></sub><br />
-      <sub>Tecent & Nanyang Technological University Singapore</sub>
+    <td align="center" style="border: none; padding: 20px; width: 25%;">
+      <strong>Yinhao Qian</strong><br />
+      <sub>Machine Learning Engineer</sub><br />
+      <i><sub>Tencent</sub></i><br />
     </td>
-    
   </tr>
 </table>
+</div>
 
 
 ## 🧾 Result Comparison
