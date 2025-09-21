@@ -1,6 +1,5 @@
 # Cheaper-NeRF: Cost-Efficient Novel-View Synthesis 🚀
 
-### [Paper](link-to-paper) | [Video](link-to-video) | [Demo](link-to-demo) | [Dataset](https://drive.google.com/drive/folders/1cK3UDIJqKAAm7zyrxRYVFJ0BRMgrwhh4)
 
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/yourusername/cheaper-nerf/blob/main/notebooks/demo.ipynb)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
