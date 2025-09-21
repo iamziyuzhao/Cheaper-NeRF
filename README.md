@@ -6,6 +6,37 @@
 ![Python](https://img.shields.io/badge/python-3.8+-blue.svg)
 ![TensorFlow](https://img.shields.io/badge/TensorFlow-2.x-orange.svg)
 
+## 🎓 Authors
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="assets/author2.jpg" width="100px;" alt=""/><br />
+      <sub><b>Ziyu Zhao</b></sub><br />
+      <sub>University of Rochester</sub>
+    </td>
+    
+    <td align="center">
+      <img src="assets/author1.jpg" width="100px;" alt=""/><br />
+      <sub><b>Zhen Zhang</b></sub><br />
+      <sub>University of Rochester</sub>
+    </td>
+      
+    <td align="center">
+      <img src="assets/author1.jpg" width="100px;" alt=""/><br />
+      <sub><b>Wuming Zhen</b></sub><br />
+      <sub>Cornell University</sub>
+    </td>
+    
+    <td align="center">
+      <img src="assets/author1.jpg" width="100px;" alt=""/><br />
+      <sub><b>Yinhao Qian</b></sub><br />
+      <sub>Tecent & Nanyang Technological University Singapore</sub>
+    </td>
+    
+  </tr>
+</table>
+
 
 ## 🧾 Result Comparison
 <p align="center">
@@ -289,22 +320,7 @@ This work builds upon the original [NeRF](https://github.com/bmild/nerf) by Mild
 | InstantNGP | 0.1h | 12GB | 33.0 | 2022 |
 | **Cheaper-NeRF** | **6h** | **6.4GB** | **32.0** | **2024** |
 
-## 🎓 Authors
 
-<table>
-  <tr>
-    <td align="center">
-      <img src="assets/author2.jpg" width="100px;" alt=""/><br />
-      <sub><b>Ziyu Zhao</b></sub><br />
-      <sub>University of Rochester</sub>
-    </td>
-    <td align="center">
-      <img src="assets/author1.jpg" width="100px;" alt=""/><br />
-      <sub><b>Zhen Zhang</b></sub><br />
-      <sub>University of Rochester</sub>
-    </td>
-  </tr>
-</table>
 
 ## 📬 Contact
 
