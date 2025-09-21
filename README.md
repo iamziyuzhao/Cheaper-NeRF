@@ -5,7 +5,7 @@
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![Python](https://img.shields.io/badge/python-3.8+-blue.svg)
 ![TensorFlow](https://img.shields.io/badge/TensorFlow-2.x-orange.svg)
-
+https://github.com/user-attachments/assets/5ec5e9a5-c710-42b9-9d13-d847f355bd13
 
 
 [![Watch the video](demo.gif)](https://drive.google.com/file/d/1f57Vnr41bB_-e3sRkI51_NlNVQQb_o7s/view?resourcekey)
