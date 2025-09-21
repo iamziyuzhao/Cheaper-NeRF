@@ -6,9 +6,11 @@
 ![Python](https://img.shields.io/badge/python-3.8+-blue.svg)
 ![TensorFlow](https://img.shields.io/badge/TensorFlow-2.x-orange.svg)
 
-<p align="center">
-  <img src="assets/cheaper_nerf_banner.png" alt="Cheaper-NeRF Results" width="800"/>
-</p>
+
+
+[![Watch the video](demo.gif)](https://drive.google.com/file/d/1f57Vnr41bB_-e3sRkI51_NlNVQQb_o7s/view?resourcekey)
+
+
 
 ## 🎯 Revolutionary Cost Reduction in 3D Scene Synthesis
 
