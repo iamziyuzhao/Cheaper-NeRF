@@ -18,17 +18,17 @@
     </td>
     <td align="center" style="border: none; padding: 20px; width: 25%;">
       <strong>Zhen Zhang</strong><br />
-      <sub>Computer Science</sub><br />
+<!--       <sub>Computer Science</sub><br /> -->
       <i><sub>University of Rochester</sub></i><br />
     </td>
     <td align="center" style="border: none; padding: 20px; width: 25%;">
       <strong>Wuming Zheng</strong><br />
-      <sub>Computer Science</sub><br />
+<!--       <sub>Computer Science</sub><br /> -->
       <i><sub>Cornell University</sub></i><br />
     </td>
     <td align="center" style="border: none; padding: 20px; width: 25%;">
       <strong>Yinhao Qian</strong><br />
-      <sub>Machine Learning Engineer</sub><br />
+      <sub>Nanyang Technological University</sub><br />
       <i><sub>Tencent</sub></i><br />
     </td>
   </tr>
