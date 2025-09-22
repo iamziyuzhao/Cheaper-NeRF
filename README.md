@@ -13,7 +13,7 @@
   <tr>
     <td align="center" style="border: none; padding: 20px; width: 25%;">
       <strong>Ziyu Zhao</strong><br />
-      <sub>Computer Science</sub><br />
+<!--       <sub>Computer Science</sub><br /> -->
       <i><sub>University of Rochester</sub></i><br />
     </td>
     <td align="center" style="border: none; padding: 20px; width: 25%;">
