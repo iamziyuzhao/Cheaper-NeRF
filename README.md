@@ -28,7 +28,7 @@
     </td>
     <td align="center" style="border: none; padding: 20px; width: 25%;">
       <strong>Yinhao Qian</strong><br />
-      <sub>Nanyang Technological University</sub><br />
+      <i><sub>Nanyang Technological University</sub></i><br />
       <i><sub>Tencent</sub></i><br />
     </td>
   </tr>
