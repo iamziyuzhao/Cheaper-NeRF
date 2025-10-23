@@ -23,7 +23,7 @@
     </td>
     <td align="center" style="border: none; padding: 20px; width: 25%;">
       <strong>Yinhao Qian</strong><br />
-      <i><sub>Tencent</sub></i><br />
+      <i><sub>Tencent AI Lab</sub></i><br />
     </td>
     <td align="center" style="border: none; padding: 20px; width: 25%;">
       <strong>Xiaocheng Ma</strong><br />
